@@ -8,7 +8,7 @@
 - 使用者可修改自身名稱、封面圖片、大頭照、自我介紹，以及帳號相關設定
 
 ## 下載專案
-- git clone https://github.com/Steavn-Chen/simple-twitter-front-end.git
+- git clone https://github.com/Steavn-Chen/simple-twitter-front-end-modify.git
 
 ## 安裝
 - npm install
