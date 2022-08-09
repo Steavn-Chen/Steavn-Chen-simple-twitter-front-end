@@ -1,5 +1,5 @@
 # simple-twitter-front-end
-專案網址： https://steavn-chen.github.io/simple-twitter-front-end-modify/#/signin
+專案網址： https://steavn-chen.github.io/simple-twitter-front-end/#/signin
 
 ## 功能介紹
 - 可在首頁瀏覽全部推文
@@ -8,7 +8,7 @@
 - 使用者可修改自身名稱、封面圖片、大頭照、自我介紹，以及帳號相關設定
 
 ## 下載專案
-- git clone https://github.com/Steavn-Chen/simple-twitter-front-end-modify.git
+- git clone https://github.com/Steavn-Chen/simple-twitter-front-end.git
 
 ## 安裝
 - npm install
