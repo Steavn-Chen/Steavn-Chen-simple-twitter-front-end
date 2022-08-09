@@ -1,9 +1,5 @@
 # simple-twitter-front-end
-<<<<<<< HEAD
 專案網址： https://steavn-chen.github.io/simple-twitter-front-end/#/signin
-=======
-專案網址： https://Steavn-Chen.github.io/simple-twitter-front-end/#/signin
->>>>>>> d3a902e1c21db33dfb49f2a915d8c84e6d3ce231
 
 ## 功能介紹
 - 可在首頁瀏覽全部推文
