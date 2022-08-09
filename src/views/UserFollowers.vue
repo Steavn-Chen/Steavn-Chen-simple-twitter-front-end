@@ -28,23 +28,23 @@
           />
         </div>
       </div>
-      <PopularUsersCard @refresh="refresh"/>
+      <PopularUsersCard @refresh="refresh" />
     </div>
   </div>
 </template>
 
 <script>
-import Navbar from "./../components/Navbar";
-import FollowNavPills from "../components/FollowNavPills.vue";
-import FollowItems from "../components/FollowItems.vue";
-import PopularUsersCard from "./../components/PopularUsersCard";
+import Navbar from './../components/Navbar'
+import FollowNavPills from '../components/FollowNavPills.vue'
+import FollowItems from '../components/FollowItems.vue'
+import PopularUsersCard from './../components/PopularUsersCard'
 
-import { mapState } from "vuex";
-import usersAPI from "../apis/users";
-import { errorToast } from "../utils/toast";
+import { mapState } from 'vuex'
+import usersAPI from '../apis/users'
+import { errorToast } from '../utils/toast'
 
 export default {
-  name: "UserFollowers",
+  name: 'UserFollowers',
   components: {
     Navbar,
     FollowNavPills,
@@ -52,50 +52,51 @@ export default {
     PopularUsersCard,
   },
   computed: {
-    ...mapState(["currentUser", "isAuthenticated"]),
+    ...mapState(['currentUser', 'isAuthenticated']),
   },
   data() {
     return {
       id: -1,
-      name: "",
+      name: '',
       tweetsNum: 0,
       followers: [],
-    };
+    }
   },
   created() {
-    const { id: userId } = this.$route.params;
-    this.fetchUser({ userId });
+    const { id: userId } = this.$route.params
+    this.fetchUser({ userId })
   },
   beforeRouteUpdate(to, from, next) {
-    const { id: userId } = to.params;
-    this.fetchUser({ userId });
-    next();
+    const { id: userId } = to.params
+    this.fetchUser({ userId })
+    next()
   },
   methods: {
     async fetchUser({ userId }) {
       try {
-        const response = await usersAPI.getUser({ userId });
-        const { data, statusText } = response;
-        if (statusText !== "OK") {
-          throw new Error();
+        const response = await usersAPI.getUserFollowers({ userId })
+        const { data, statusText } = response
+        if (statusText !== 'OK') {
+          throw new Error()
         }
-        const { id, name, Followers, tweetsCount } = data;
-        this.id = id;
-        this.name = name;
-        this.followers = Followers;
-        this.tweetsNum = tweetsCount;
+        const { id, name, Followers, tweetsCount, introduction } = data
+        this.id = id
+        this.name = name
+        this.followers = Followers
+        this.tweetsNum = tweetsCount
+        this.introduction = introduction
       } catch (error) {
         errorToast.fire({
-          title: "無法取得追蹤者資訊",
-        });
+          title: '無法取得追蹤者資訊',
+        })
       }
     },
     refresh() {
-      const { id: userId } = this.$route.params;
-      this.fetchUser({ userId });
+      const { id: userId } = this.$route.params
+      this.fetchUser({ userId })
     },
   },
-};
+}
 </script>
 
 <style lang="sass" scoped>
