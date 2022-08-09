@@ -36,6 +36,7 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 import { emptyImageFilter } from '../utils/mixins'
 import { mapState } from 'vuex'
 import { eventBus } from '../utils/eventbus'
@@ -43,6 +44,15 @@ import usersAPI from '../apis/users'
 
 export default {
   name: 'FollowItems',
+=======
+import { emptyImageFilter } from "../utils/mixins";
+import { mapState } from "vuex";
+import { eventBus } from '../utils/eventbus'
+import usersAPI from "../apis/users";
+
+export default {
+  name: "FollowItems",
+>>>>>>> d3a902e1c21db33dfb49f2a915d8c84e6d3ce231
   mixins: [emptyImageFilter],
   props: {
     initialFollower: {
@@ -54,6 +64,7 @@ export default {
     return {
       follower: {
         id: 0,
+<<<<<<< HEAD
         name: '',
         account: '',
         avatar: '',
@@ -64,12 +75,25 @@ export default {
   },
   computed: {
     ...mapState(['currentUser', 'isAuthenticated']),
+=======
+        name: "",
+        account: "",
+        avatar: "",
+        introduction: "",
+      },
+      isFollowing: false
+    };
+  },
+  computed: {
+    ...mapState(["currentUser", "isAuthenticated"]),
+>>>>>>> d3a902e1c21db33dfb49f2a915d8c84e6d3ce231
   },
   watch: {
     initialFollower(newValue) {
       this.follower = {
         ...this.follower,
         ...newValue,
+<<<<<<< HEAD
       }
     },
   },
@@ -79,17 +103,33 @@ export default {
     console.log(data)
     this.isFollowing = data.isFollower
     this.fetchData()
+=======
+      };
+    },
+  },
+  async created() {
+    const response = await usersAPI.getUser({userId: this.initialFollower.id})
+    const { data } = response
+    this.isFollowing = data.isFollower
+    this.fetchData();
+>>>>>>> d3a902e1c21db33dfb49f2a915d8c84e6d3ce231
     this.handleFollow()
   },
   methods: {
     fetchData() {
+<<<<<<< HEAD
       const { id, name, account, avatar, introduction } = this.initialFollower
+=======
+      const { id, name, account, avatar, introduction } =
+        this.initialFollower;
+>>>>>>> d3a902e1c21db33dfb49f2a915d8c84e6d3ce231
       this.follower = {
         id,
         name,
         account,
         avatar,
         introduction,
+<<<<<<< HEAD
       }
     },
     async addFollow(userId) {
@@ -126,6 +166,45 @@ export default {
     },
   },
 }
+=======
+      };
+    },
+    async addFollow(userId) {
+      try {
+        const id = {id: userId}
+        this.isFollowing = true;
+        const { data } = await usersAPI.addFollow({ id });
+        if(data.status !== 'success') {
+          throw new Error
+        }
+        this.$emit("refresh")
+        eventBus.$emit("refresh")
+      } catch (error) {
+        console.log(error);
+      }
+
+    },
+    async deleteFollow(userId) {
+      try {
+        this.isFollowing = false;
+        const { data } = await usersAPI.deleteFollow({ userId });
+        if(data.status !== 'success') {
+          throw new Error
+        }
+        this.$emit("refresh")
+        eventBus.$emit("refresh")
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    handleFollow() {
+      eventBus.$on("refresh", () => {
+        this.fetchData()
+      })
+    }
+  },
+};
+>>>>>>> d3a902e1c21db33dfb49f2a915d8c84e6d3ce231
 </script>
 
 <style lang="sass" scoped>
