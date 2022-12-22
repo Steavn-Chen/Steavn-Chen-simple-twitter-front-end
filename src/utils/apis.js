@@ -1,5 +1,7 @@
 import axios from 'axios'
-const baseURL = 'http://simpletwitterapiserver-env.eba-ft9ah582.ap-northeast-1.elasticbeanstalk.com/api'
+
+const baseURL = 'http://simpletwitterapiserver-env-1.eba-ft9ah582.ap-northeast-1.elasticbeanstalk.com/api'
+
 // const baseURL = 'http://localhost:3000/api'
 
 export const apiHelper = axios.create({ baseURL })
