@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseURL = 'https://simpletwitterapiserver-env-1.eba-ft9ah582.ap-northeast-1.elasticbeanstalk.com/api'
+const baseURL = 'https://smtr.first-aws-project.com/api'
 
 // const baseURL = 'http://localhost:3000/api'
 
