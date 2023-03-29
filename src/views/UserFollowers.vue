@@ -75,9 +75,13 @@ export default {
     async fetchUser({ userId }) {
       try {
         const response = await usersAPI.getUserFollowers({ userId })
-        const { data, statusText } = response
-        if (statusText !== 'OK') {
-          throw new Error()
+        // const { data, statusText } = response
+        // if (statusText !== 'OK') {
+        //   throw new Error()
+        // }
+        const { data, status } = response;
+        if (status !== 200) {
+          throw new Error();
         }
         const { id, name, Followers, tweetsCount, introduction } = data
         this.id = id
