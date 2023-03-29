@@ -75,10 +75,6 @@ export default {
     async fetchFollowings({ userId }) {
       try {
         const response = await usersAPI.getUserFollowings({ userId })
-        // const { data, statusText } = response
-        // if (statusText !== 'OK') {
-        //   throw new Error()
-        // }
         const { data, status } = response;
         if (status !== 200) {
           throw new Error();

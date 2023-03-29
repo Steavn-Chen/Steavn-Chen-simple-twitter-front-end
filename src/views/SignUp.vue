@@ -79,9 +79,9 @@ export default {
           password: this.password,
           checkPassword: this.checkPassword
         })
-        const { data, statusText } = response
-        if(data.status !== 'success' || statusText !== 'OK') {
-          throw new Error(data.message)
+        const { data } = response;
+        if (data.status !== "success") {
+          throw new Error(data.message);
         }
         successToast.fire({
           title: '註冊成功!'
