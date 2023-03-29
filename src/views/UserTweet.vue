@@ -88,8 +88,8 @@ export default {
     async fetchTweet({ userId }) {
       try {
         const response = await usersAPI.getUserTweets({ userId });
-        const { data, statusText } = response;
-        if (statusText !== "OK") {
+        const { data, status } = response;
+        if (status !== 200) {
           throw new Error();
         }
         this.tweets = data;
@@ -104,8 +104,8 @@ export default {
     async fetchUser({ userId }) {
       try {
         const response = await usersAPI.getUser({ userId });
-        const { data, statusText } = response;
-        if (statusText !== "OK") {
+        const { data, status } = response;
+        if (status !== 200) {
           throw new Error();
         }
         this.user = data;

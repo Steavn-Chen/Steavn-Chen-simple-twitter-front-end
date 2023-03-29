@@ -77,8 +77,8 @@ export default {
     async fetchReplies({ userId }) {
       try {
         const response = await usersAPI.getUserReplies({ userId });
-        const { data, statusText } = response;
-        if (statusText !== "OK") {
+        const { data, status } = response;
+        if (status !== 200) { 
           throw new Error();
         }
         this.replies = data;
@@ -93,8 +93,8 @@ export default {
     async fetchUser({ userId }) {
       try {
         const response = await usersAPI.getUser({ userId });
-        const { data, statusText } = response;
-        if (statusText !== "OK") {
+        const { data, status } = response;
+        if (status !== 200) {
           throw new Error();
         }
         this.user = data;

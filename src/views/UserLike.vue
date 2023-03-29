@@ -2,29 +2,14 @@
   <div>
     <Navbar />
     <div class="wide-container">
-      <Spinner v-show="isLoading"/>
+      <Spinner v-show="isLoading" />
       <div class="main" v-show="!isLoading">
-        <UserProfile
-          :current-user="currentUser"
-          :initial-user="user"
-          @refresh="refresh"
-        />
+        <UserProfile :current-user="currentUser" :initial-user="user" @refresh="refresh" />
         <div v-if="tweets.length === 0" class="empty">使用者沒有任何喜歡的推文</div>
-        <UserLikeItems
-          v-for="tweet in tweets"
-          :key="tweet.id"
-          :initial-tweet="tweet"
-          @toggle-tweet-reply="toggleTweetReply"
-          @refresh="refresh"
-        />
-        <UserEditModal 
-          :current-user="currentUser"
-          @refresh="refresh" />
-        <TweetLikeReplyModal
-          :current-user="currentUser"
-          :tweet-item="tweetItem"
-          @refresh="refresh"
-        />
+        <UserLikeItems v-for="tweet in tweets" :key="tweet.id" :initial-tweet="tweet"
+          @toggle-tweet-reply="toggleTweetReply" @refresh="refresh" />
+        <UserEditModal :current-user="currentUser" @refresh="refresh" />
+        <TweetLikeReplyModal :current-user="currentUser" :tweet-item="tweetItem" @refresh="refresh" />
         <TweetModal :current-user="currentUser" @refresh="refresh" />
       </div>
       <PopularUsersCard @refresh="refresh" />
@@ -84,9 +69,8 @@ export default {
     async fetchLike({ userId }) {
       try {
         const response = await usersAPI.getUserLikes({ userId });
-        const { data, statusText } = response;
-        console.log('response', response)
-        if (statusText !== "OK") {
+        const { data, status } = response;
+        if (status !== 200) {
           throw new Error();
         }
         this.tweets = data;
@@ -102,8 +86,8 @@ export default {
     async fetchUser({ userId }) {
       try {
         const response = await usersAPI.getUser({ userId });
-        const { data, statusText } = response;
-        if (statusText !== "OK") {
+        const { data, status } = response;
+        if (status !== 200) {
           throw new Error();
         }
         this.user = data;

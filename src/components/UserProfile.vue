@@ -146,7 +146,7 @@ export default {
       try {
         const id = { id: userId };
         const response = await usersAPI.addFollow({ id });
-        if(response.data.status !== 'success') {
+        if (response.data.status !== 'success') {
           throw new Error
         }
         this.$emit("refresh");
