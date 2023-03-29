@@ -85,6 +85,7 @@ export default {
       try {
         const response = await usersAPI.getUserLikes({ userId });
         const { data, statusText } = response;
+        console.log('response', response)
         if (statusText !== "OK") {
           throw new Error();
         }

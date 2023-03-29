@@ -70,10 +70,7 @@ export default {
     async fetchData() {
       try {
         const response = await tweetsAPI.getTweets()
-        const { data, statusText } = response
-        if(statusText !== 'OK') {
-          throw new Error
-        }
+        const { data } = response
         this.tweets = data
         this.isLoading = false;
       } catch (error) {

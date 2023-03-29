@@ -74,8 +74,8 @@ export default {
           account: this.account,
           password: this.password,
         });
-        const { data, statusText } = response;
-        if (data.status !== "success" || statusText !== "OK") {
+        const { data } = response;
+         if (data.status !== "success") {  
           throw new Error(data.message);
         }
         if (data.user.role === "admin") {
@@ -87,7 +87,6 @@ export default {
         }
         // 將 token 存放在 localStorage 內
         localStorage.setItem("token", data.token);
-
         // 透過 setCurrentUser 把使用者資料存到 Vuex 的 state 中
         this.$store.commit("setCurrentUser", data.user);
         successToast.fire({

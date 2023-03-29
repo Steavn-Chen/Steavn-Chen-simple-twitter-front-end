@@ -73,6 +73,7 @@ export default {
     async fetchTweet(tweetId) {
       try {
         this.isLoading = true;
+       // const { data } = response
         const { data, statusText } = await tweetsAPI.getTweet(tweetId);
         if (statusText !== "OK") {
           throw new Error();
